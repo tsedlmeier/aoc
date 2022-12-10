@@ -9,8 +9,8 @@ int main(void)
   int line_count = 0;
   ssize_t line_size = 0;
 
-  FILE* fp = fopen("./input", "r");
-  // FILE* fp = fopen("./test", "r");
+  // FILE* fp = fopen("./input", "r");
+  FILE* fp = fopen("./test", "r");
   if (!fp)
   {
     fprintf(stderr, "Error opening file '%s'\n", "./input");
@@ -18,9 +18,9 @@ int main(void)
   }
 
   int array[3][3] =   // R P S <- him
-                  /*R*/{{3,0,6},
-                  /*P*/ {6,3,0},
-                  /*S*/ {0,6,3}};
+                  /*X*/{{3,1,2}, // Loose
+                  /*Y*/ {4,5,6}, // Draw
+                  /*Z*/ {8,9,7}};// Win
                  /*me*/
   char him,me;
   int him_n, me_n;
@@ -52,13 +52,13 @@ int main(void)
 
     switch (me) {
         case 'X' :
-          me_n = 0; // Rock
+          me_n = 0; // Loose
           break;
         case 'Y' :
-          me_n = 1; // Paper
+          me_n = 1; // Draw
           break;
         case 'Z' :
-          me_n = 2; // Sciss
+          me_n = 2; // Win
          break;
       default:
           me_n = -1;
@@ -66,8 +66,7 @@ int main(void)
         break;
     }
 
-    if(me_n>2 || him_n>2 ) printf("Ne kann ned sein\n");
-    points += (array[me_n][him_n] + me_n+1); 
+    points += (array[me_n][him_n]); 
 
     line_count++;
   }
